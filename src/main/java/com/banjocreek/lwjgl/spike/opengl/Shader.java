@@ -2,6 +2,8 @@ package com.banjocreek.lwjgl.spike.opengl;
 
 import org.lwjgl.opengl.GL20;
 
+import com.banjocreek.lwjgl.spike.resource.Resource;
+
 public final class Shader implements AutoCloseable {
 
 	private final Resource glShader;

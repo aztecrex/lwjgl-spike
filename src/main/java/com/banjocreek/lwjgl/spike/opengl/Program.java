@@ -4,6 +4,8 @@ import java.util.Arrays;
 
 import org.lwjgl.opengl.GL20;
 
+import com.banjocreek.lwjgl.spike.resource.Resource;
+
 public final class Program implements AutoCloseable {
 
 	private final Resource glProgram;

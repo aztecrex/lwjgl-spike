@@ -1,15 +1,15 @@
-package com.banjocreek.lwjgl.spike.opengl;
+package com.banjocreek.lwjgl.spike.resource;
 
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.function.IntConsumer;
 
-final class Resource {
+public final class Resource {
 
 	private final AtomicBoolean released = new AtomicBoolean(false);
 	private final IntConsumer release;
 	private final int id;
 	
-	Resource(final int id, final IntConsumer release) {
+	public Resource(final int id, final IntConsumer release) {
 		this.id = id;
 		this.release = release;
 	}
