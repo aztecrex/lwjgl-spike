@@ -8,12 +8,12 @@ public final class Shader implements AutoCloseable {
 
 	private final Resource glShader;
 	
-	public Shader(Type type, CharSequence source) {
-		this.glShader = new Resource(GL20.glCreateShader(type.code), GL20::glDeleteShader);
-		GL20.glShaderSource(glShader.id(), source);
-		GL20.glCompileShader(this.glShader.id());
-		if (GL20.glGetShaderi(this.glShader.id(), GL20.GL_COMPILE_STATUS) == 0) {
-			final String info = GL20.glGetShaderInfoLog(glShader.id(),4096);
+	public Shader(OpenGL gl, Type type, CharSequence source) {
+		this.glShader = new Resource(gl.glCreateShader(type.code), gl::glDeleteShader);
+		gl.glShaderSource(glShader.id(), source);
+		gl.glCompileShader(this.glShader.id());
+		if (gl.glGetShader(this.glShader.id(), GL20.GL_COMPILE_STATUS) == 0) {
+			final String info = gl.glGetShaderInfoLog(glShader.id(),4096);
 			glShader.release();
 		    throw new RuntimeException(
 		    		"Error compiling Shader code: " + info);

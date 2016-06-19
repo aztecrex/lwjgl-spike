@@ -39,6 +39,7 @@ import org.lwjgl.opengl.GL;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL20;
 
+import com.banjocreek.lwjgl.spike.opengl.OpenGL;
 import com.banjocreek.lwjgl.spike.opengl.Program;
 import com.banjocreek.lwjgl.spike.opengl.Shader;
 
@@ -82,19 +83,19 @@ public class App {
 
 		this.model = new StaticModel(0, modelData);		
 		
-		final Shader vertexShader = new Shader(Shader.Type.Vertex, 
+		final Shader vertexShader = new Shader(OpenGL.bind(), Shader.Type.Vertex, 
 				"#version 410 core\n"+
 		        "layout(location = 0) in vec4 vPosition;\n" +
 				"void main() {gl_Position = vPosition;}"
 				);
 
-		final Shader fragmentShader = new Shader(Shader.Type.Fragment, 
+		final Shader fragmentShader = new Shader(OpenGL.bind(), Shader.Type.Fragment, 
 			"#version 410 core\n" +
 			"out vec4 fColor;" + 
-			"void main() {fColor = vec4(0.0, 0.0, 1.0, 1.0);}"			
+			"void main() {fColor = vec4(0.0, 0.75, 1.0, 1.0);}"			
 			);
 		
-		this.program = new Program(vertexShader,fragmentShader);
+		this.program = new Program(OpenGL.bind(), vertexShader,fragmentShader);
 				
 		
 	}
@@ -156,7 +157,7 @@ public class App {
 	private void loop() {
 
 		// Set the clear color
-		glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
+		glClearColor(1f, 1f, 1f, 0.0f);
 
 		// Run the rendering loop until the user has attempted to close
 		// the window or has pressed the ESCAPE key.
